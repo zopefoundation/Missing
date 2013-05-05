@@ -12,9 +12,9 @@
 
  ****************************************************************************/
 
-static char Missing_module_documentation[] = 
+static char Missing_module_documentation[] =
 ""
-"\n$Id$"
+""
 ;
 
 #include "ExtensionClass/ExtensionClass.h"
@@ -75,7 +75,7 @@ Missing_pow(PyObject *v, PyObject *w, PyObject *z)
     assert(v != notMissing);
     Py_INCREF(v);
     return v;
-}				
+}
 
 static PyObject *
 Missing_un(PyObject *v)
@@ -160,7 +160,7 @@ Missing_reduce(PyObject *self, PyObject *args, PyObject *kw)
   return Py_BuildValue("O()",self->ob_type);
 }
 
-static struct PyMethodDef reduce_ml[] = {  
+static struct PyMethodDef reduce_ml[] = {
   {"__reduce__", (PyCFunction)Missing_reduce, 1,
    "Return a missing value reduced to standard python objects"
   }
@@ -174,12 +174,12 @@ Missing_getattr(PyObject *self, PyObject *name)
   if(!(c=PyString_AsString(name))) return NULL;
 
   legal=c;
-  if (strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+  if (strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
 	     *legal) != NULL)
     {
       for (legal++; *legal; legal++)
-	if (strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_", 
-		   *legal) == NULL) 
+	if (strchr("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",
+		   *legal) == NULL)
 	  {
 	    legal=NULL;
 	    break;
@@ -219,7 +219,7 @@ Missing_call(PyObject *self, PyObject *args, PyObject *kw)
 }
 
 /* All Missing objects are equal to each other, except for the
-   special notMissing object.  It is returned by coerce to 
+   special notMissing object.  It is returned by coerce to
    indicate that Missing is being compare to something else.
 */
 
@@ -252,7 +252,7 @@ static PyExtensionClass MissingType = {
   (reprfunc)Missing_str,		/*tp_str*/
   (getattrofunc)Missing_getattr,	/*tp_getattro*/
   (setattrofunc)0,			/*tp_setattro*/
-  
+
   /* Space for future expansion */
   0L,0L,
   "Represent totally unknown quantities\n"
@@ -269,7 +269,7 @@ static PyExtensionClass MissingType = {
 
 /* List of methods defined in the module */
 
-static struct PyMethodDef Module_Level__methods[] = {  
+static struct PyMethodDef Module_Level__methods[] = {
   {NULL, (PyCFunction)NULL, 0, NULL}		/* sentinel */
 };
 
@@ -298,7 +298,6 @@ init_Missing(void)
   reduce=PyCFunction_New(reduce_ml, theValue);
 
   PyDict_SetItemString(d, "Value", theValue);
-  PyDict_SetItemString(d, "V", theValue); 
-  PyDict_SetItemString(d, "MV", theValue); 
+  PyDict_SetItemString(d, "V", theValue);
+  PyDict_SetItemString(d, "MV", theValue);
 }
- 
