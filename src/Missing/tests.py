@@ -1,62 +1,57 @@
-##############################################################################
-#
-# Copyright (c) 2003 Zope Foundation and Contributors.
-# All Rights Reserved.
-#
-# This software is subject to the provisions of the Zope Public License,
-# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
-# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
-# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
-# FOR A PARTICULAR PURPOSE.
-#
-##############################################################################
-"""Test for missing values.
-
->>> from Missing import Value
-
->>> Value != 12
-1
->>> 12 != Value
-1
->>> u"abc" != Value
-1
->>> Value != u"abc"
-1
-
->>> 1 + Value == Value
-1
->>> Value + 1 == Value
-1
->>> Value == 1 + Value
-1
->>> Value == Value + 1
-1
->>> Value.__class__
-<type 'Missing.Value'>
-
->>> type(Value())
-<type 'Missing.Value'>
-
->>> from Missing import MV
-
->>> MV.__class__
-<type 'Missing.Value'>
->>> type(MV())
-<type 'Missing.Value'>
-
->>> from Missing import V
-
->>> V.__class__
-<type 'Missing.Value'>
->>> type(V())
-<type 'Missing.Value'>
-"""
-
+import sys
 import unittest
-from doctest import DocTestSuite
 
-def test_suite():
-    return unittest.TestSuite((
-        DocTestSuite(),
-        ))
+if sys.version_info >= (3, ):
+    def u(value):
+        return str(value, 'utf-8')
+else:
+    def u(value):
+        return unicode(value, 'utf-8')
+
+
+class ValueTests(object):
+
+    def test_cmp(self):
+        value = self._make_one()
+        self.assertNotEqual(value, 12)
+        self.assertNotEqual(12, value)
+        self.assertNotEqual(value, b'abc')
+        self.assertNotEqual(b'abc', value)
+        self.assertNotEqual(value, u(b'abc'))
+        self.assertNotEqual(u(b'abc'), value)
+
+    def test_add(self):
+        value = self._make_one()
+        self.assertEqual(1 + value, value)
+        self.assertEqual(value + 1, value)
+        self.assertEqual(value, 1 + value)
+        self.assertEqual(value, value + 1)
+
+    def test_class(self):
+        value = self._make_one()
+        self.assertEqual(repr(value.__class__), "<type 'Missing.Value'>")
+
+    def test_type(self):
+        value = self._make_one()
+        self.assertEqual(repr(type(value())), "<type 'Missing.Value'>")
+
+
+class TestValue(ValueTests, unittest.TestCase):
+
+    def _make_one(self):
+        from Missing import Value
+        return Value
+
+
+class TestMV(ValueTests, unittest.TestCase):
+
+    def _make_one(self):
+        from Missing import MV
+        return MV
+
+
+class TestV(ValueTests, unittest.TestCase):
+
+    def _make_one(self):
+        from Missing import V
+        return V
