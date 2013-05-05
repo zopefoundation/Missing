@@ -41,7 +41,7 @@ else:
 
 setup(
     name='Missing',
-    version='2.13.2dev',
+    version='3.0dev',
     url='http://pypi.python.org/pypi/Missing',
     license='ZPL 2.1',
     description="Special Missing objects used in Zope2.",
