@@ -4,6 +4,8 @@ Changelog
 3.0 (unreleased)
 ----------------
 
+- Changed the type name of the Missing class to `Missing.Missing` to
+  distinguish it from an instance of the type like `Missing.Value`.
 
 2.13.1 (2010-06-16)
 -------------------

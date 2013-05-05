@@ -234,7 +234,7 @@ Missing_cmp(PyObject *m1, PyObject *m2)
 static PyExtensionClass MissingType = {
   PyObject_HEAD_INIT(NULL)
   0,					/*ob_size*/
-  "Missing.Value",			/*tp_name*/
+  "Missing.Missing",			/*tp_name*/
   sizeof(Missing),			/*tp_basicsize*/
   0,					/*tp_itemsize*/
   /* methods */

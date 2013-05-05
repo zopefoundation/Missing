@@ -230,11 +230,11 @@ class ValueTests(object):
 
     def test_class(self):
         value = self._make_one()
-        self.assertEqual(repr(value.__class__), "<type 'Missing.Value'>")
+        self.assertTrue('Missing.Missing' in repr(value.__class__))
 
     def test_type(self):
         value = self._make_one()
-        self.assertEqual(repr(type(value)), "<type 'Missing.Value'>")
+        self.assertTrue('Missing.Missing' in repr(type(value)))
 
 
 class TestValue(ValueTests, unittest.TestCase):
