@@ -4,6 +4,9 @@ Changelog
 3.0 (unreleased)
 ----------------
 
+- Added compatibility with Python 3.2, 3.3 and PyPy using the Python
+  implementation.
+
 - Added a Python reference implementation of the Missing class.
 
 - Changed the type name of the Missing class to `Missing.Missing` to
