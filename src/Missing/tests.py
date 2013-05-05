@@ -137,6 +137,16 @@ class ValueTests(object):
         self.assertEqual(value, 2 ^ value)
         self.assertEqual(value, value ^ 2)
 
+    def test_coerce(self):
+        from Missing import notMissing
+        value = self._make_one()
+        self.assertEqual(coerce(value, 1), (value, notMissing))
+        self.assertEqual(coerce(1, value), (notMissing, value))
+        self.assertEqual(coerce(value, 1.0), (value, notMissing))
+        self.assertEqual(coerce(1.0, value), (notMissing, value))
+        self.assertEqual(coerce(value, 0x1), (value, notMissing))
+        self.assertEqual(coerce(0x1, value), (notMissing, value))
+
     def test_number_conversion(self):
         value = self._make_one()
         self.assertRaises(TypeError, int, value)

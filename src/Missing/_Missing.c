@@ -300,4 +300,5 @@ init_Missing(void)
   PyDict_SetItemString(d, "Value", theValue);
   PyDict_SetItemString(d, "V", theValue);
   PyDict_SetItemString(d, "MV", theValue);
+  PyDict_SetItemString(d, "notMissing", notMissing);
 }
