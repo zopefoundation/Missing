@@ -4,6 +4,8 @@ Changelog
 3.0 (unreleased)
 ----------------
 
+- Added a Python reference implementation of the Missing class.
+
 - Changed the type name of the Missing class to `Missing.Missing` to
   distinguish it from an instance of the type like `Missing.Value`.
 
