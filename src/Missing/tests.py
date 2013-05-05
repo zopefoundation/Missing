@@ -33,25 +33,44 @@ class ValueTests(object):
 
     def test_type(self):
         value = self._make_one()
-        self.assertEqual(repr(type(value())), "<type 'Missing.Value'>")
+        self.assertEqual(repr(type(value)), "<type 'Missing.Value'>")
 
 
 class TestValue(ValueTests, unittest.TestCase):
 
-    def _make_one(self):
+    def _get_target(self):
         from Missing import Value
         return Value
+
+    def _make_one(self):
+        return self._get_target()
 
 
 class TestMV(ValueTests, unittest.TestCase):
 
-    def _make_one(self):
+    def _get_target(self):
         from Missing import MV
         return MV
+
+    def _make_one(self):
+        return self._get_target()
 
 
 class TestV(ValueTests, unittest.TestCase):
 
-    def _make_one(self):
+    def _get_target(self):
         from Missing import V
         return V
+
+    def _make_one(self):
+        return self._get_target()
+
+
+class TestMissing(ValueTests, unittest.TestCase):
+
+    def _get_target(self):
+        from Missing import Missing
+        return Missing
+
+    def _make_one(self):
+        return self._get_target()()
