@@ -5,9 +5,11 @@ if sys.version_info >= (3, ):
     def u(value):
         return str(value, 'utf-8')
     long = int
+    PY3 = True
 else:
     def u(value):
         return unicode(value, 'utf-8')
+    PY3 = False
 
 
 class ValueTests(object):
@@ -174,6 +176,8 @@ class ValueTests(object):
         self.assertEqual(value, value ^ 2)
 
     def test_coerce(self):
+        if PY3:
+            return
         from Missing import notMissing
         value = self._make_one()
         self.assertEqual(coerce(value, 1), (value, notMissing))

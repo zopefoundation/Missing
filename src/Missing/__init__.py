@@ -1,6 +1,12 @@
 import os
+import sys
 
 from ExtensionClass import Base
+
+if sys.version_info >= (3, ):
+    PY3 = True
+else:
+    PY3 = False
 
 
 class Missing(Base):
@@ -22,13 +28,19 @@ class Missing(Base):
             return 'V'
         return (type(self), ())
 
-    def __nonzero__(self):
+    def __bool__(self):
         return False
 
-    def __cmp__(self, other):
-        if self is notMissing:
-            return -1
-        return other is notMissing
+    if not PY3:
+        __nonzero__ = __bool__
+
+        def __coerce__(self, other):
+            return (self, notMissing)
+
+        def __cmp__(self, other):
+            if self is notMissing:
+                return -1
+            return other is notMissing
 
     def __eq__(self, other):
         if self is notMissing:
@@ -71,9 +83,6 @@ class Missing(Base):
         return self
 
     __neg__ = __pos__ = __abs__ = __invert__ = _change
-
-    def __coerce__(self, other):
-        return (self, notMissing)
 
     def __setattr__(self, key, value):
         raise AttributeError(key)
