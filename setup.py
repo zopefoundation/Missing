@@ -12,19 +12,31 @@
 #
 ##############################################################################
 
+import os
 from os.path import join
+import platform
+import sys
+
 from setuptools import setup, find_packages, Extension
 
 README = open('README.rst').read()
 CHANGES = open('CHANGES.rst').read()
 
-ext_modules = [
-    Extension(
-        name='Missing._Missing',
-        include_dirs=['include', 'src'],
-        sources=[join('src', 'Missing', '_Missing.c')],
-        depends=[join('include', 'ExtensionClass', 'ExtensionClass.h')]),
-]
+# PyPy won't build the extension
+py_impl = getattr(platform, 'python_implementation', lambda: None)
+is_pypy = py_impl() == 'PyPy'
+is_pure = 'PURE_PYTHON' in os.environ
+py3k = sys.version_info >= (3, )
+if is_pypy or is_pure or py3k:
+    ext_modules = []
+else:
+    ext_modules = [
+        Extension(
+            name='Missing._Missing',
+            include_dirs=['include', 'src'],
+            sources=[join('src', 'Missing', '_Missing.c')],
+            depends=[join('include', 'ExtensionClass', 'ExtensionClass.h')]),
+    ]
 
 
 setup(
