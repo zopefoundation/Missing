@@ -21,6 +21,42 @@ class ValueTests(object):
         self.assertNotEqual(value, u(b'abc'))
         self.assertNotEqual(u(b'abc'), value)
 
+    def test_lt(self):
+        value = self._make_one()
+        self.assertTrue(1 < value)
+        self.assertFalse(value < 1)
+        self.assertFalse(value < value)
+
+    def test_le(self):
+        value = self._make_one()
+        self.assertTrue(1 <= value)
+        self.assertFalse(value <= 1)
+        self.assertTrue(value <= value)
+
+    def test_eq(self):
+        value = self._make_one()
+        self.assertFalse(1 == value)
+        self.assertFalse(value == 1)
+        self.assertTrue(value == value)
+
+    def test_ne(self):
+        value = self._make_one()
+        self.assertTrue(1 != value)
+        self.assertTrue(value != 1)
+        self.assertFalse(value != value)
+
+    def test_gt(self):
+        value = self._make_one()
+        self.assertFalse(1 > value)
+        self.assertTrue(value > 1)
+        self.assertFalse(value > value)
+
+    def test_ge(self):
+        value = self._make_one()
+        self.assertFalse(1 >= value)
+        self.assertTrue(value >= 1)
+        self.assertTrue(value >= value)
+
     def test_add(self):
         value = self._make_one()
         self.assertEqual(1 + value, value)
