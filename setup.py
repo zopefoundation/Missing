@@ -33,7 +33,7 @@ setup(name='Missing',
             sources=[join('src', 'Missing', '_Missing.c')],
             depends=[join('include', 'ExtensionClass', 'ExtensionClass.h')]),
       ],
-      install_requires=['ExtensionClass'],
+      install_requires=['ExtensionClass<4.0dev'],
       include_package_data=True,
       zip_safe=False,
       )
