@@ -39,9 +39,11 @@ else:
     ]
 
 
+__version__ = '3.1.dev0'
+
 setup(
     name='Missing',
-    version='3.0.1dev',
+    version=__version__,
     url='http://pypi.python.org/pypi/Missing',
     license='ZPL 2.1',
     description="Special Missing objects used in Zope2.",
@@ -58,11 +60,11 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
