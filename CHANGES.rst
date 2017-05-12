@@ -4,6 +4,7 @@ Changelog
 3.3 (unreleased)
 ----------------
 
+- Add support for bytes and matrix multiplication.
 
 3.2 (2017-04-26)
 ----------------

@@ -3,10 +3,15 @@ import sys
 
 from ExtensionClass import Base
 
-if sys.version_info >= (3, ):
+if sys.version_info >= (3, 5):
     PY3 = True
+    PY35 = True
+elif sys.version_info >= (3, ):
+    PY3 = True
+    PY35 = False
 else:
     PY3 = False
+    PY35 = False
 
 
 class Missing(Base):
@@ -19,6 +24,9 @@ class Missing(Base):
 
     def __repr__(self):
         return 'Missing.Value'
+
+    def __bytes__(self):
+        return b''
 
     def __str__(self):
         return ''
@@ -78,6 +86,9 @@ class Missing(Base):
     __mod__ = __rmod__ = __divmod__ = __rdivmod__ = _calc
     __lshift__ = __rshift__ = __rlshift__ = __rrshift__ = _calc
     __and__ = __rand__ = __or__ = __ror__ = __xor__ = __rxor__ = _calc
+
+    if PY35:
+        __matmul__ = __rmatmul__ = _calc
 
     def _change(self):
         return self
