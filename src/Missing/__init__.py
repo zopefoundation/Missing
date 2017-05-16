@@ -1,4 +1,3 @@
-import os
 import sys
 
 from ExtensionClass import Base
@@ -116,10 +115,3 @@ class Missing(Base):
 
 V = MV = Value = Missing()
 notMissing = Missing()
-
-
-if not 'PURE_PYTHON' in os.environ:  # pragma no cover
-    try:
-        from _Missing import *
-    except ImportError:
-        pass

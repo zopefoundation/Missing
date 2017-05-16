@@ -6,6 +6,8 @@ Changelog
 
 - Add support for bytes and matrix multiplication.
 
+- Remove the Python 2-only C extension.
+
 3.2 (2017-04-26)
 ----------------
 
