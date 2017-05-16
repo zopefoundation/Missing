@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.3 (unreleased)
+4.0 (2017-05-16)
 ----------------
 
 - Add support for bytes and matrix multiplication.
