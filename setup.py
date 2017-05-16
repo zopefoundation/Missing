@@ -17,7 +17,7 @@ from setuptools import setup, find_packages
 README = open('README.rst').read()
 CHANGES = open('CHANGES.rst').read()
 
-__version__ = '4.0'
+__version__ = '4.1.dev0'
 
 setup(
     name='Missing',
