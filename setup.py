@@ -22,12 +22,13 @@ __version__ = '4.1.dev0'
 setup(
     name='Missing',
     version=__version__,
-    url='http://pypi.python.org/pypi/Missing',
+    url='https://github.com/zopefoundation/Missing',
     license='ZPL 2.1',
     description="Special Missing objects used in Zope2.",
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     long_description='\n\n'.join([README, CHANGES]),
+    keywords="zope2 missing object",
     packages=find_packages('src'),
     package_dir={'': 'src'},
     classifiers=[
