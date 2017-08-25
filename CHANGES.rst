@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.1 (unreleased)
-----------------
+4.0.1 (2017-08-25)
+------------------
 
 - Restore `Missing._Missing` module for pickle compatibility with the old
   C extension version. [https://github.com/zopefoundation/Missing/issues/3]
