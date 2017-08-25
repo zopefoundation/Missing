@@ -5,7 +5,7 @@ Changelog
 ----------------
 
 - Restore `Missing._Missing` module for pickle compatibility with the old
-  C extension version.
+  C extension version. [https://github.com/zopefoundation/Missing/issues/3]
 
 4.0 (2017-05-16)
 ----------------
