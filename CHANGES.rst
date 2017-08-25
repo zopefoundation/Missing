@@ -4,6 +4,8 @@ Changelog
 4.1 (unreleased)
 ----------------
 
+- Restore `Missing._Missing` module for pickle compatibility with the old
+  C extension version.
 
 4.0 (2017-05-16)
 ----------------
