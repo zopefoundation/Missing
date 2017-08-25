@@ -17,11 +17,11 @@ from setuptools import setup, find_packages
 README = open('README.rst').read()
 CHANGES = open('CHANGES.rst').read()
 
-__version__ = '4.1.dev0'
+version = '4.1.dev0'
 
 setup(
     name='Missing',
-    version=__version__,
+    version=version,
     url='https://github.com/zopefoundation/Missing',
     license='ZPL 2.1',
     description="Special Missing objects used in Zope2.",
