@@ -12,12 +12,15 @@ matrix:
           dist: xenial
           sudo: true
 install:
+    - pip install coveralls coverage
     - pip install -U setuptools
     - pip install zc.buildout
     - buildout bootstrap
     - buildout
 script:
-    - bin/test -v1
+    - coverage run bin/test -v1
+after-success:
+    - coveralls
 notifications:
     email: false
 cache:
