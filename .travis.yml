@@ -19,7 +19,7 @@ install:
     - buildout
 script:
     - coverage run bin/test -v1
-after-success:
+after_success:
     - coveralls
 notifications:
     email: false
