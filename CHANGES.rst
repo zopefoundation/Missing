@@ -4,8 +4,9 @@ Changelog
 4.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Drop support for Python 3.4.
 
+- Add support for Python 3.7.
 
 4.0.1 (2017-08-25)
 ------------------
