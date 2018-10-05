@@ -1,4 +1,4 @@
 Overview
 ========
 
-Missing provides special objects used in some Zope2 internals like the ZCatalog.
+Missing provides special objects used in some Zope internals like the ZCatalog.
