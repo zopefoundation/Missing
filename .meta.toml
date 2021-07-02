@@ -5,11 +5,11 @@ template = "pure-python"
 commit-id = "26fae87d19fe1cd8e51298fd288201989467fea9"
 
 [python]
-with-pypy = true
+with-future-python = true
 with-legacy-python = true
+with-pypy = true
 with-sphinx-doctests = false
 with-windows = false
-with-future-python = true
 
 [coverage]
 fail-under = 89
