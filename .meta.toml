@@ -12,7 +12,7 @@ with-sphinx-doctests = false
 with-windows = false
 
 [coverage]
-fail-under = 89
+fail-under = 88
 
 [flake8]
 additional-config = [
