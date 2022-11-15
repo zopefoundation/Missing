@@ -2,6 +2,7 @@ import sys
 
 from ExtensionClass import Base
 
+
 if sys.version_info >= (3, 5):
     PY3 = True
     PY35 = True

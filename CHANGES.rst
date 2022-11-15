@@ -4,7 +4,7 @@ Changelog
 4.2 (unreleased)
 ----------------
 
-- Add support for Python 3.8, 3.9 and 3.10 (as of beta3).
+- Add support for Python 3.8, 3.9, 3.10, 3.11, 3.12 (as of alpha1)
 
 
 4.1 (2018-10-05)
