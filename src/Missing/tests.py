@@ -3,6 +3,7 @@ import unittest
 from Missing import PY3
 from Missing import PY35
 
+
 if PY3:
     def u(value):
         return str(value, 'utf-8')
