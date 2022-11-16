@@ -2,10 +2,10 @@
 # https://github.com/zopefoundation/meta/tree/master/config/pure-python
 [meta]
 template = "pure-python"
-commit-id = "1682092af76cea30232b54a7d7de73a9128ea376"
+commit-id = "9e96d80474deebd9f4a001b60c7da2682d925cdd"
 
 [python]
-with-future-python = true
+with-future-python = false
 with-legacy-python = true
 with-pypy = true
 with-sphinx-doctests = false
@@ -16,6 +16,7 @@ fail-under = 88
 
 [flake8]
 additional-config = [
+    "# F401 - Module imported but unused"
     "per-file-ignores =",
     "    src/Missing/_Missing.py: F401",
     ]
