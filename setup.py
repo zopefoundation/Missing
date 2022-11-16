@@ -19,12 +19,16 @@ from setuptools import setup
 README = open('README.rst').read()
 CHANGES = open('CHANGES.rst').read()
 
-version = '4.2.dev0'
+version = '4.2'
 
 setup(
     name='Missing',
     version=version,
     url='https://github.com/zopefoundation/Missing',
+    project_urls={
+        'Issue Tracker': 'https://github.com/zopefoundation/Missing/issues',
+        'Sources': 'https://github.com/zopefoundation/Missing',
+    },
     license='ZPL 2.1',
     description="Special Missing objects used in Zope.",
     author='Zope Foundation and Contributors',
@@ -53,6 +57,7 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
+    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
     install_requires=['ExtensionClass >= 4.1a1'],
     include_package_data=True,
     zip_safe=False,
