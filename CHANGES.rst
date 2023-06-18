@@ -4,6 +4,7 @@ Changelog
 4.3 (unreleased)
 ----------------
 
+- Drop code paths for python 2 and python 3.5 support.
 
 4.2 (2022-11-16)
 ----------------
