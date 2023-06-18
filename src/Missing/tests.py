@@ -1,17 +1,8 @@
 import unittest
 
-from Missing import PY3
-from Missing import PY35
 
-
-if PY3:
-    def u(value):
-        return str(value, 'utf-8')
-    long = int
-else:
-    def u(value):
-        return unicode(value, 'utf-8')  # NOQA: F821
-
+def u(value):
+    return str(value, 'utf-8')
 
 class ValueTests(object):
 
@@ -21,7 +12,7 @@ class ValueTests(object):
         self.assertNotEqual(12, value)
         self.assertNotEqual(value, b'abc')
         self.assertNotEqual(b'abc', value)
-        self.assertNotEqual(value, u(b'abc'))
+        self.assertNotEqual(value, u(b'abc')
         self.assertNotEqual(u(b'abc'), value)
 
     def test_lt(self):
@@ -74,7 +65,6 @@ class ValueTests(object):
         self.assertEqual(value, 1 - value)
         self.assertEqual(value, value - 1)
 
-    @unittest.skipUnless(PY35, 'Python 3.5+ syntax')
     def test_matmul(self):
         value = self._make_one()
 
@@ -200,21 +190,9 @@ class ValueTests(object):
         self.assertEqual(value, 2 ^ value)
         self.assertEqual(value, value ^ 2)
 
-    @unittest.skipIf(PY3, 'Python 2 only.')
-    def test_coerce(self):
-        from Missing import notMissing
-        value = self._make_one()
-        self.assertEqual(coerce(value, 1), (value, notMissing))  # NOQA: F821
-        self.assertEqual(coerce(1, value), (notMissing, value))  # NOQA: F821
-        self.assertEqual(coerce(value, 1.0), (value, notMissing))  # NOQA: F821
-        self.assertEqual(coerce(1.0, value), (notMissing, value))  # NOQA: F821
-        self.assertEqual(coerce(value, 0x1), (value, notMissing))  # NOQA: F821
-        self.assertEqual(coerce(0x1, value), (notMissing, value))  # NOQA: F821
-
     def test_number_conversion(self):
         value = self._make_one()
         self.assertRaises(TypeError, int, value)
-        self.assertRaises(TypeError, long, value)
         self.assertRaises(TypeError, float, value)
         self.assertRaises(TypeError, oct, value)
         self.assertRaises(TypeError, hex, value)
