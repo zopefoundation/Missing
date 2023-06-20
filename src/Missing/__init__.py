@@ -1,17 +1,4 @@
-import sys
-
 from ExtensionClass import Base
-
-
-if sys.version_info >= (3, 5):
-    PY3 = True
-    PY35 = True
-elif sys.version_info >= (3, ):
-    PY3 = True
-    PY35 = False
-else:
-    PY3 = False
-    PY35 = False
 
 
 class Missing(Base):
@@ -38,17 +25,6 @@ class Missing(Base):
 
     def __bool__(self):
         return False
-
-    if not PY3:
-        __nonzero__ = __bool__
-
-        def __coerce__(self, other):
-            return (self, notMissing)
-
-        def __cmp__(self, other):
-            if self is notMissing:
-                return -1
-            return other is notMissing
 
     def __eq__(self, other):
         if self is notMissing:
@@ -86,9 +62,7 @@ class Missing(Base):
     __mod__ = __rmod__ = __divmod__ = __rdivmod__ = _calc
     __lshift__ = __rshift__ = __rlshift__ = __rrshift__ = _calc
     __and__ = __rand__ = __or__ = __ror__ = __xor__ = __rxor__ = _calc
-
-    if PY35:
-        __matmul__ = __rmatmul__ = _calc
+    __matmul__ = __rmatmul__ = _calc
 
     def _change(self):
         return self
