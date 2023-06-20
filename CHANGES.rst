@@ -7,6 +7,9 @@ Changelog
 
 - Drop support for Python 2.7, 3.5, 3.6.
 
+- Deprecate ``._Missing`` which containes just BBB imports.
+
+
 4.2 (2022-11-16)
 ----------------
 

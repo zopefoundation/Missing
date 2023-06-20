@@ -54,7 +54,10 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
     python_requires='>=3.7',
-    install_requires=['ExtensionClass >= 4.1a1'],
+    install_requires=[
+        'ExtensionClass >= 4.1a1',
+        'zope.deferredimport',
+    ],
     include_package_data=True,
     zip_safe=False,
 )
