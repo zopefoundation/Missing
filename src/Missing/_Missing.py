@@ -1,4 +1,4 @@
-from zope.deferredimport import deprecated
+from zope.deferredimport import deprecated  # pragma: no cover
 
 
 deprecated(

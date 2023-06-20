@@ -1,6 +1,17 @@
 import unittest
 
 
+class Dummy:
+    def __init__(self, value):
+        self.value = value
+
+    def __matmul__(self, other):
+        return self.value * other
+
+    def __rmatmul__(self, other):
+        return self.value * other  # pragma: no cover
+
+
 class ValueTests:
 
     def test_cmp(self):
@@ -64,26 +75,11 @@ class ValueTests:
 
     def test_matmul(self):
         value = self._make_one()
-
-        class Dummy:
-            def __init__(self, value):
-                self.value = value
-
-            def __matmul__(self, other):
-                return self.value * other
-
-            def __rmatmul__(self, other):
-                return self.value * other
-
-        def matmul(a, b):
-            # Don't use the @ operator to avoid SyntaxError's
-            return a.__matmul__(b)
-
         dummy = Dummy(2)
-        self.assertEqual(matmul(dummy, value), value)
-        self.assertEqual(matmul(value, dummy), value)
-        self.assertEqual(value, matmul(dummy, value))
-        self.assertEqual(value, matmul(value, dummy))
+        self.assertEqual(dummy @ value, value)
+        self.assertEqual(value @ dummy, value)
+        self.assertEqual(value, dummy @ value)
+        self.assertEqual(value, value @ dummy)
 
     def test_mul(self):
         value = self._make_one()
@@ -204,6 +200,7 @@ class ValueTests:
         self.assertRaises(AttributeError, getattr, value, 'a1')
         self.assertRaises(AttributeError, getattr, value, '_a')
         self.assertRaises(AttributeError, getattr, value, 'a_b1')
+        self.assertRaises(AttributeError, getattr, value, '')
 
     def test_setattr(self):
         value = self._make_one()
@@ -287,3 +284,117 @@ class TestMissing(ValueTests, unittest.TestCase):
         klass = self._get_target()
         value = self._make_one()
         self.assertEqual(value.__reduce__(), (klass, ()))
+
+
+class TestNotMissing(ValueTests, unittest.TestCase):
+
+    def _get_target(self):
+        from Missing import notMissing
+        return notMissing
+
+    def _make_one(self):
+        return self._get_target()
+
+    def test_add(self):
+        value = self._make_one()
+        self.assertNotEqual(1 + value, value)
+        self.assertNotEqual(value + 1, value)
+        self.assertNotEqual(value, 1 + value)
+        self.assertNotEqual(value, value + 1)
+
+    def test_and(self):
+        value = self._make_one()
+        self.assertNotEqual(2 & value, value)
+        self.assertNotEqual(value & 2, value)
+        self.assertNotEqual(value, 2 & value)
+        self.assertNotEqual(value, value & 2)
+
+    def test_div(self):
+        value = self._make_one()
+        self.assertNotEqual(2 / value, value)
+        self.assertNotEqual(value / 2, value)
+        self.assertNotEqual(value, 2 / value)
+        self.assertNotEqual(value, value / 2)
+
+    def test_divmod(self):
+        value = self._make_one()
+        self.assertNotEqual(divmod(2, value), value)
+        self.assertNotEqual(divmod(value, 2), value)
+        self.assertNotEqual(value, divmod(2, value))
+        self.assertNotEqual(value, divmod(value, 2))
+
+    def test_integer_div(self):
+        value = self._make_one()
+        self.assertNotEqual(2 // value, value)
+        self.assertNotEqual(value // 2, value)
+        self.assertNotEqual(value, 2 // value)
+        self.assertNotEqual(value, value // 2)
+
+    def test_lshift(self):
+        value = self._make_one()
+        self.assertNotEqual(2 << value, value)
+        self.assertNotEqual(value << 2, value)
+        self.assertNotEqual(value, 2 << value)
+        self.assertNotEqual(value, value << 2)
+
+    def test_matmul(self):
+        value = self._make_one()
+        dummy = Dummy(2)
+        self.assertNotEqual(dummy @ value, value)
+        self.assertNotEqual(value @ dummy, value)
+        self.assertNotEqual(value, dummy @ value)
+        self.assertNotEqual(value, value @ dummy)
+
+    def test_mod(self):
+        value = self._make_one()
+        self.assertNotEqual(2 % value, value)
+        self.assertNotEqual(value % 2, value)
+        self.assertNotEqual(value, 2 % value)
+        self.assertNotEqual(value, value % 2)
+
+    def test_mul(self):
+        value = self._make_one()
+        self.assertNotEqual(2 * value, value)
+        self.assertNotEqual(value * 2, value)
+        self.assertNotEqual(value, 2 * value)
+        self.assertNotEqual(value, value * 2)
+
+    def test_or(self):
+        value = self._make_one()
+        self.assertNotEqual(2 | value, value)
+        self.assertNotEqual(value | 2, value)
+        self.assertNotEqual(value, 2 | value)
+        self.assertNotEqual(value, value | 2)
+
+    def test_pow(self):
+        value = self._make_one()
+        self.assertNotEqual(2 ** value, value)
+        self.assertNotEqual(value ** 2, value)
+        self.assertNotEqual(value, 2 ** value)
+        self.assertNotEqual(value, value ** 2)
+
+    def test_reduce(self):
+        from Missing import Missing
+        value = self._make_one()
+        self.assertEqual(value.__reduce__(), (Missing, ()))
+
+    def test_rshift(self):
+        value = self._make_one()
+        self.assertNotEqual(2 >> value, value)
+        self.assertNotEqual(value >> 2, value)
+        self.assertNotEqual(value, 2 >> value)
+        self.assertNotEqual(value, value >> 2)
+
+    def test_sub(self):
+        value = self._make_one()
+        self.assertNotEqual(1 - value, value)
+        self.assertNotEqual(value - 1, value)
+        self.assertNotEqual(value, 1 - value)
+        self.assertNotEqual(value, value - 1)
+
+    def test_xor(self):
+        value = self._make_one()
+        self.assertNotEqual(2 ^ value, value)
+        self.assertNotEqual(value ^ 2, value)
+        self.assertNotEqual(value, 2 ^ value)
+        self.assertNotEqual(value, value ^ 2)
