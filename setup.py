@@ -19,7 +19,7 @@ from setuptools import setup
 README = open('README.rst').read()
 CHANGES = open('CHANGES.rst').read()
 
-version = '4.3.dev0'
+version = '5.0.dev0'
 
 setup(
     name='Missing',
@@ -32,7 +32,7 @@ setup(
     license='ZPL 2.1',
     description="Special Missing objects used in Zope.",
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     long_description='\n\n'.join([README, CHANGES]),
     keywords="zope missing object",
     packages=find_packages('src'),
@@ -40,15 +40,11 @@ setup(
     classifiers=[
         "Development Status :: 6 - Mature",
         "Environment :: Web Environment",
-        "Framework :: Zope :: 4",
+        "Framework :: Zope :: 5",
         "License :: OSI Approved :: Zope Public License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -57,8 +53,11 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    python_requires='>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
-    install_requires=['ExtensionClass >= 4.1a1'],
+    python_requires='>=3.7',
+    install_requires=[
+        'ExtensionClass >= 4.1a1',
+        'zope.deferredimport',
+    ],
     include_package_data=True,
     zip_safe=False,
 )
