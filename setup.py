@@ -19,7 +19,7 @@ from setuptools import setup
 README = open('README.rst').read()
 CHANGES = open('CHANGES.rst').read()
 
-version = '5.0'
+version = '5.1.dev0'
 
 setup(
     name='Missing',
