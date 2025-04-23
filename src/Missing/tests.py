@@ -25,39 +25,39 @@ class ValueTests:
 
     def test_lt(self):
         value = self._make_one()
-        self.assertTrue(1 < value)
+        self.assertLess(1, value)
         self.assertFalse(value < 1)
         self.assertFalse(value < value)
 
     def test_le(self):
         value = self._make_one()
-        self.assertTrue(1 <= value)
+        self.assertLessEqual(1, value)
         self.assertFalse(value <= 1)
-        self.assertTrue(value <= value)
+        self.assertLessEqual(value, value)
 
     def test_eq(self):
         value = self._make_one()
-        self.assertFalse(1 == value)
-        self.assertFalse(value == 1)
-        self.assertTrue(value == value)
+        self.assertNotEqual(1, value)
+        self.assertNotEqual(value, 1)
+        self.assertEqual(value, value)
 
     def test_ne(self):
         value = self._make_one()
-        self.assertTrue(1 != value)
-        self.assertTrue(value != 1)
-        self.assertFalse(value != value)
+        self.assertNotEqual(1, value)
+        self.assertNotEqual(value, 1)
+        self.assertEqual(value, value)
 
     def test_gt(self):
         value = self._make_one()
         self.assertFalse(1 > value)
-        self.assertTrue(value > 1)
+        self.assertGreater(value, 1)
         self.assertFalse(value > value)
 
     def test_ge(self):
         value = self._make_one()
         self.assertFalse(1 >= value)
-        self.assertTrue(value >= 1)
-        self.assertTrue(value >= value)
+        self.assertGreaterEqual(value, 1)
+        self.assertGreaterEqual(value, value)
 
     def test_add(self):
         value = self._make_one()
@@ -234,11 +234,11 @@ class ValueTests:
 
     def test_class(self):
         value = self._make_one()
-        self.assertTrue('Missing.Missing' in repr(value.__class__))
+        self.assertIn('Missing.Missing', repr(value.__class__))
 
     def test_type(self):
         value = self._make_one()
-        self.assertTrue('Missing.Missing' in repr(type(value)))
+        self.assertIn('Missing.Missing', repr(type(value)))
 
 
 class TestValue(ValueTests, unittest.TestCase):
