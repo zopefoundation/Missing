@@ -1,8 +1,8 @@
-# Generated from:
-# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+# Generated with zope.meta (https://zopemeta.readthedocs.io/) from:
+# https://github.com/zopefoundation/meta/tree/master/src/zope/meta/pure-python
 [meta]
 template = "pure-python"
-commit-id = "c6354ebd"
+commit-id = "9832deed"
 
 [python]
 with-future-python = false
@@ -11,6 +11,7 @@ with-sphinx-doctests = false
 with-windows = false
 with-macos = false
 with-docs = false
+with-free-threaded-python = false
 
 [coverage]
 fail-under = 100
@@ -23,6 +24,7 @@ additional-config = [
     ]
 
 [tox]
+testenv-skip-test-extra = true
 testenv-deps = [
     "zope.testrunner",
     ]
