@@ -15,10 +15,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      id-token: write  # Mandatory for trusted publishing
-    environment:
-      name: pypi
-      url: https://pypi.org/p/Missing
     strategy:
       # We want to see all failures:
       fail-fast: false
@@ -62,25 +58,51 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build release packages
+    - name: Build package artifacts
       if: >
-        github.event_name == 'push'
-        && startsWith(github.ref, 'refs/tags')
-        && matrix.os[0] == 'ubuntu'
+        matrix.os[0] == 'ubuntu'
         && matrix.config[1] == 'py314'
       run: |
         rm -f dist/*
         python setup.py sdist
         python setup.py bdist_wheel
 
-    - name: Publish release to PyPI
+    - name: Upload package artifacts
       if: >
-        github.event_name == 'push'
-        && startsWith(github.ref, 'refs/tags')
-        && matrix.os[0] == 'ubuntu'
+        matrix.os[0] == 'ubuntu'
         && matrix.config[1] == 'py314'
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        skip-existing: true
-        packages-dir: dist/
-        verbose: true
+      uses: actions/upload-artifact@v7
+      path: dist/*
+
+  publish:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    # Only publish on tag pushes
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    # Wait for build jobs to complete
+    needs: [build]
+    environment:
+      name: pypi
+      url: https://pypi.org/p/Missing
+    permissions:
+      contents: read
+      id-token: write  # Mandatory for trusted publishing
+
+    steps:
+      - name: Download package artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: dist/
+          pattern: '*'
+          merge-multiple: true
+
+      - name: Display structure of downloaded files
+        run: |
+          ls -lR dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
+          packages-dir: dist/
+          verbose: true
