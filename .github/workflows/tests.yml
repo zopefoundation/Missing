@@ -15,6 +15,10 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+      id-token: write  # Mandatory for trusted publishing
+    environment:
+      name: pypi
+      url: https://pypi.org/p/Missing
     strategy:
       # We want to see all failures:
       fail-fast: false
