@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Missing"
-version = "5.2.dev0"
+version = "5.2a1"
 description = "Special Missing objects used in Zope."
 license = "ZPL-2.1"
 classifiers = [
