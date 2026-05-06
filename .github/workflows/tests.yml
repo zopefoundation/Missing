@@ -72,7 +72,8 @@ jobs:
         matrix.os[0] == 'ubuntu'
         && matrix.config[1] == 'py314'
       uses: actions/upload-artifact@v7
-      path: dist/*
+      with:
+        path: dist/*
 
   publish:
     name: Publish to PyPI
