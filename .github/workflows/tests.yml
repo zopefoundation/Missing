@@ -68,13 +68,23 @@ jobs:
         python setup.py sdist
         python setup.py bdist_wheel
 
-    - name: Upload package artifacts
+    - name: Upload package wheel
       if: >
         matrix.os[0] == 'ubuntu'
         && matrix.config[1] == 'py314'
       uses: actions/upload-artifact@v7
       with:
-        path: dist/*
+        name: Missing.whl
+        path: dist/*whl
+
+    - name: Upload package source distribution
+      if: >
+        matrix.os[0] == 'ubuntu'
+        && matrix.config[1] == 'py314'
+      uses: actions/upload-artifact@v7
+      with:
+        name: Missing.tar.gz
+        path: dist/*gz
 
   publish:
     name: Publish to PyPI
