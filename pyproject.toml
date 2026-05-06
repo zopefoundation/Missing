@@ -11,7 +11,7 @@ build-backend = "setuptools.build_meta"
 name = "Missing"
 version = "5.2a1"
 description = "Special Missing objects used in Zope."
-license-expression = "ZPL-2.1"
+license = "ZPL-2.1"
 classifiers = [
     "Development Status :: 6 - Mature",
     "Environment :: Web Environment",
