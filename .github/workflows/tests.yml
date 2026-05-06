@@ -64,7 +64,7 @@ jobs:
         && matrix.config[1] == 'py314'
       run: |
         rm -f dist/*
-        pip install -U "setuptools >= 78.1.1,< 82" wheel twine
+        pip install -U packaging "setuptools >= 78.1.1,< 82" wheel twine
         python setup.py sdist
         python setup.py bdist_wheel
 
