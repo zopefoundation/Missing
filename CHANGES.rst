@@ -4,7 +4,9 @@ Changelog
 5.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Switch to Trusted Publishing for the tag and release process.
+  When a tag is pushed to GitHub, the ``tests`` action will automatically
+  build a source distribution and a wheel and publish them to PyPI.
 
 
 5.1 (2026-03-18)

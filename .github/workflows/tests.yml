@@ -40,8 +40,8 @@ jobs:
       with:
         persist-credentials: false
     - name: Install uv + caching
-      # astral/setup-uv@7.5.0
-      uses: astral-sh/setup-uv@e06108dd0aef18192324c70427afc47652e63a82
+      # astral/setup-uv@8.1.0
+      uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
       with:
         enable-cache: true
         cache-dependency-glob: |
@@ -57,3 +57,26 @@ jobs:
         uvx coveralls --service=github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build release packages
+      if: >
+        github.event_name == 'push'
+        && startsWith(github.ref, 'refs/tags')
+        && matrix.os[0] == 'ubuntu'
+        && matrix.config[1] == 'py314'
+      run: |
+        rm -f dist/*
+        python setup.py sdist
+        python setup.py bdist_wheel
+
+    - name: Publish release to PyPI
+      if: >
+        github.event_name == 'push'
+        && startsWith(github.ref, 'refs/tags')
+        && matrix.os[0] == 'ubuntu'
+        && matrix.config[1] == 'py314'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        skip-existing: true
+        packages-dir: dist/
+        verbose: true
