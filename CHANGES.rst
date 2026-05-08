@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2 (unreleased)
+5.2 (2026-05-08)
 ----------------
 
 - Switch to Trusted Publishing for the tag and release process.
