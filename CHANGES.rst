@@ -4,6 +4,9 @@ Changelog
 5.3 (unreleased)
 ----------------
 
+- Fix deprecated import syntax.
+  (`#18 <https://github.com/zopefoundation/Missing/issues/18>`)
+
 
 5.2 (2026-05-08)
 ----------------
