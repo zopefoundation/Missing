@@ -4,6 +4,8 @@ Changelog
 5.3 (unreleased)
 ----------------
 
+- Add support for Python 3.15.
+
 
 5.2 (2026-05-08)
 ----------------
