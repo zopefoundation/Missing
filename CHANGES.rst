@@ -1,13 +1,17 @@
 Changelog
 =========
 
+5.4 (unreleased)
+----------------
+
+
 5.3 (2026-09-14)
 ----------------
 
 - Add support for Python 3.15.
 
 - Fix deprecated import syntax.
-  (`#18 <https://github.com/zopefoundation/Missing/issues/18>`)
+  (`#18 <https://github.com/zopefoundation/Missing/issues/18>`_)
 
 
 5.2 (2026-05-08)
